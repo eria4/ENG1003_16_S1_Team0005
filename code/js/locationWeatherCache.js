@@ -1,4 +1,5 @@
 
+
 // Returns a date in the format "YYYY-MM-DD".
 Date.prototype.simpleDateString = function() {
     function pad(value)
@@ -26,18 +27,22 @@ Date.prototype.forecastDateString = function() {
 // Prefix to use for Local Storage.  You may change this.
 var APP_PREFIX = "weatherApp";
 
+
+
 function LocationWeatherCache()
 {
     // Private attributes:
 
     var locations = [];
     var callbacks = {};
-
+	var apikey =  "017082e004aefa0237e14c95bdf64850";
     // Public methods:
     
     // Returns the number of locations stored in the cache.
     //
     this.length = function() {
+    	
+    	var lengthOfLocations = locations[index].getLength;
     };
     
     // Returns the location object for a given index.
@@ -85,6 +90,32 @@ function LocationWeatherCache()
     // weather object for that location.
     // 
     this.getWeatherAtIndexForDate = function(index, date, callback) {
+    	
+    	var latitude = locations[index].lat;
+    	var longitude = locations[index].lat;
+    	
+    	if ( date == "today")
+    	{
+    		var currentDate = new Date().forecastDateString();
+    	}
+    	else
+    	{
+    		var currentDate = date + "T12:00:00";
+    	}
+    	
+    	var conditions = "?units=si";
+    	conditions = conditions + "&[currently,hourly,minutely]";
+    	
+	var callback = "&callback=c.weatherResponse";
+	var url = "https://api.forecast.io/forecast/" + apikey ;
+	
+	var parameters;
+    	parameters = latitude + ","  + longitude + "," + currentDate + conditions + callback;
+    	
+	var script = document.createElement('script');
+	script.src = url + parameters;
+	document.body.appendChild(script);
+	
     };
     
     // This is a callback function passed to forecast.io API calls.
@@ -94,6 +125,23 @@ function LocationWeatherCache()
     // weather request.
     //
     this.weatherResponse = function(response) {
+    	
+    	var weatherSummary = response.daily.data[0].summary;
+	var weatherIcon = response.daily.data[0].icon;
+	var minTemp = response.daily.data[0].temperatureMin;
+	var maxTemp = response.daily.data[0].temperatureMax;
+	var humidity = response.daily.data[0].humidity;
+	var windSpeed = response.daily.data[0].windSpeed;
+	
+	var locationWeather = 
+		{
+			summary: weatherSummary,
+			icon : weatherIcon + ".png",
+			min : minTemp,
+			max : maxTemp,
+			humidity: humidity,
+			windSpeed: windSpeed,
+		};
     };
 
     // Private methods:
@@ -120,40 +168,7 @@ function saveLocations()
 {
 }
 
-var apikey =  "017082e004aefa0237e14c95bdf64850";
-
-var conditions = "?units=si&";
-var callback = "&callback=c.weatherResponse";
-var url = "https://api.forecast.io/forecast/" + apikey ;
 
 
-latitude = 1.111;
-longitude = 2.2222;
 
-params = latitude + "," + longitude + conditions + callback;
-
-console.log( url + apikey + "/" + params );
-
-weatherResponse = function(respons)
-{
 	
-	var weatherSummary = response.daily.data[0].summary;
-	var weatherIcon = response.daily.data[0].icon;
-	var minTemp = response.daily.data[0].temperatureMin;
-	var maxTemp = response.daily.data[0].temperatureMax;
-	var humidity = response.daily.data[0].humidity;
-	var windSpeed = response.daily.data[0].windSpeed;
-	
-	var locationWeather = 
-		{
-			summary: weatherSummary,
-			icon : weatherIcon + ".png",
-			min : minTemp,
-			max : maxTemp,
-			humidity: humidity,
-			windSpeed: windSpeed,
-		};
-}
-var script = document.createElement('script');
-script.src = url  + apikey + "/" + params;
-document.body.appendChild(script);	
