@@ -3,31 +3,27 @@
 
 
 //link the function to the save button when it is clicked
-document.getElementById("SaveButton").onclick = Save();
+document.getElementById("saveButton").onclick = function (){Save()};
 
-location = "Melbourne";
-location = "s";
 
 function Save(){
     //make variable that connect to the input by user
-    var location = document.getElementById("inputLocation").value;
-    var Nickname = document.getElementById("inputNickname").value;
+    var location = document.getElementById("location").value;
+    var nickname = document.getElementById("nickname").value;
     var locationID = 1;
     var nicknameID = 1;
     location = JSON.stringify(location);
-    Nickname = JSON.stringify(Nickname);
+    nickname = JSON.stringify(nickname);
     
     
     
     //save the input by user the local storage
     localStorage.setItem('location' + locationID,location);
-    localStorage.setItem('nickname' + nicknameID,Nickname);
+    localStorage.setItem('nickname' + nicknameID,nickname);
     
     locationID++;
     nicknameID++;
-    
-   
-    
+    alert('saved')
     
 }
 
