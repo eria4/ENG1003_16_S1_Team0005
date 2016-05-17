@@ -40,9 +40,10 @@ function LocationWeatherCache()
     
     // Returns the number of locations stored in the cache.
     //
-    this.length = function() {
+    this.length = function(index) 
+    {
     	
-    	var lengthOfLocations = locations[index].getLength;
+    	return location[index].getLength;
     };
     
     // Returns the location object for a given index.
