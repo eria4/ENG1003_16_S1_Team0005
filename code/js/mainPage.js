@@ -12,9 +12,8 @@ function viewLocation(locationName)
 }
 
 function getItem(){
-    var location = localStorage.getItem('location' + locationID);
-    var nickname = localStorage.getItem('nickname'' + nicknameID);
-    location = JSON.parse(location);
-    nickname = JSON.parse(nickname);
-    document.getElementById("icon0").value = location;
+    var saveobject = localStorage.getItem('saveobject');
+    
+    saveobject = JSON.parse(saveobject);
+    document.getElementById("icon0").textContent = location;
 }
