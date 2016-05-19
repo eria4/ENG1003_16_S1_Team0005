@@ -11,9 +11,17 @@ function viewLocation(locationName)
     location.href = 'viewlocation.html';
 }
 
-function getItem(){
+
+window.onload = function getItem(){
     var saveobject = localStorage.getItem('saveobject');
     
     saveobject = JSON.parse(saveobject);
-    document.getElementById("icon0").textContent = location;
+    
+    if (saveobject.nickname != ""){
+        document.getElementById("location1").textContent = saveobject.nickname.toUpperCase();
+    }
+    else {
+        document.getElementById("location1").textContent = saveobject.location.toUpperCase();
+    }
+    
 }
