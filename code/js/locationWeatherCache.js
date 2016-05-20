@@ -42,17 +42,15 @@ function LocationWeatherCache()
     //
     this.length = function() 
     {
-    	var getLocationsLength = locations.length;
-        
-        //This is assuming that that the array holds the properties Nickname, Latitude, Longitude and summary
-        getLocationsLength = getLocationsLength/4 ;
-    	return getLocationsLength;
+    	return locations.length;
     };
     
     // Returns the location object for a given index.
     // Indexes begin at zero.
     //
     this.locationAtIndex = function(index) {
+    	
+    	return locations[index];
     };
 
     // Given a latitude, longitude and nickname, this method saves a 
@@ -61,41 +59,29 @@ function LocationWeatherCache()
     //
     this.addLocation = function(latitude, longitude, nickname)
     {
-        var forecast = "";
-        var index = locations.length;
-        
-        //Because Each Entry Should Be 4 array slots long, this is the formula to find it's entry number
-        var modifiedIndex = (index/4) + 1;
-        return modifiedIndex;
-        
-        locations[index] = latitude;
-        index++;
-        locations[index] = longitude;
-        index++;
-        locations[index] = nickname;
-        index++;
-        
-        //Add empty forecasts slot into array
-        locations[index] = "";
-        
-        
-        
+    	var locations.length = index;
+    	var location + index = {
+    		"nickname" : nickname,
+    		"latitude" : latitude,
+    		"longitude" : longitude,
+    		"forecasts" : ""
+    	};
+        return index;
     }
 
     // Removes the saved location at the given index.
     // 
     this.removeLocationAtIndex = function(index)
     {
-        //The final array position of the index
-        var entryNumber = index*4;
-        var endPosition = entryNumber - 4;
-        while ( entryNumber > endPosition)
-            {
-                delete locations[entryNumber]
-                locations.pop();
-                entryNumber--;
-            }       
-        
+      var location.length = locationsLength;
+      if ( locationsLength > index)
+      {
+      	locations.splice( index , 1);
+      }
+      else
+      {
+      	console.log( "No location at index");
+      }
     }
 
     // This method is used by JSON.stringify() to serialise this class.
@@ -208,14 +194,17 @@ function LocationWeatherCache()
 //
 function loadLocations()
 {
-    //Parse
+    var storedLocations = localStorage.getItem( 'locations');
+    locations = JSON.parse( storedLocations );
+    
 }
 
 // Save the singleton locationWeatherCache to Local Storage.
 //
 function saveLocations()
 {
-   //Stringify
+   var storedLocations= JSON.stringify(locations);
+   localStorage.setItem( 'locations', storedLocations);
 }
 
 
