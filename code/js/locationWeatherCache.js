@@ -40,10 +40,13 @@ function LocationWeatherCache()
     
     // Returns the number of locations stored in the cache.
     //
-    this.length = function(index) 
+    this.length = function() 
     {
-    	
-    	return location[index].getLength;
+    	var getLocationsLength = locations.length;
+        
+        //This is assuming that that the array holds the properties Nickname, Latitude, Longitude and summary
+        getLocationsLength = getLocationsLength/4 ;
+    	return getLocationsLength;
     };
     
     // Returns the location object for a given index.
@@ -58,12 +61,41 @@ function LocationWeatherCache()
     //
     this.addLocation = function(latitude, longitude, nickname)
     {
+        var forecast = "";
+        var index = locations.length;
+        
+        //Because Each Entry Should Be 4 array slots long, this is the formula to find it's entry number
+        var modifiedIndex = (index/4) + 1;
+        return modifiedIndex;
+        
+        locations[index] = latitude;
+        index++;
+        locations[index] = longitude;
+        index++;
+        locations[index] = nickname;
+        index++;
+        
+        //Add empty forecasts slot into array
+        locations[index] = "";
+        
+        
+        
     }
 
     // Removes the saved location at the given index.
     // 
     this.removeLocationAtIndex = function(index)
     {
+        //The final array position of the index
+        var entryNumber = index*4;
+        var endPosition = entryNumber - 4;
+        while ( entryNumber > endPosition)
+            {
+                delete locations[entryNumber]
+                locations.pop();
+                entryNumber--;
+            }       
+        
     }
 
     // This method is used by JSON.stringify() to serialise this class.
@@ -152,8 +184,23 @@ function LocationWeatherCache()
     // matching latitude and longitude if one exists, otherwise it
     // returns -1.
     //
+    
+    //NOTE: This function was written to 
     function indexForLocation(latitude, longitude)
     {
+        for( index = 0 ; index < locationLength ; index++)
+            {
+                if (latitude = locations[index])
+                    {
+                        if( longitude = locations[index + 1])
+                            {
+                                var latLongconcatination = locations[index]+ "," locations[index + 1];
+                                return latLongconcatination;
+                            }
+                        else { return -1;}
+                    }
+                else { return -1;}
+            }
     }
 }
 
@@ -161,12 +208,14 @@ function LocationWeatherCache()
 //
 function loadLocations()
 {
+    //Parse
 }
 
 // Save the singleton locationWeatherCache to Local Storage.
 //
 function saveLocations()
 {
+   //Stringify
 }
 
 
