@@ -171,7 +171,7 @@ function LocationWeatherCache()
     // returns -1.
     //
     
-    //NOTE: This function was written to 
+    //NOTE: This function has to be rewritten taking into consideration new storage format
     function indexForLocation(latitude, longitude)
     {
         for( index = 0 ; index < locationLength ; index++)
