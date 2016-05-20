@@ -171,22 +171,21 @@ function LocationWeatherCache()
     // returns -1.
     //
     
-    //NOTE: This function has to be rewritten taking into consideration new storage format
     function indexForLocation(latitude, longitude)
     {
-        for( index = 0 ; index < locationLength ; index++)
-            {
-                if (latitude = locations[index])
-                    {
-                        if( longitude = locations[index + 1])
-                            {
-                                var latLongconcatination = locations[index]+ "," locations[index + 1];
-                                return latLongconcatination;
-                            }
-                        else { return -1;}
-                    }
-                else { return -1;}
-            }
+       for ( index = 0 ; index < locations.length ; index++)
+       {
+       	if( locations[ index ].latitude == latitude)
+       		{
+       			if( locations[ index ].longitude == longitude)
+       			{
+       				return index;
+       			}
+       			else {return -1;}
+       		}
+       }
+       else { return -1 ;}
+            
     }
 }
 
