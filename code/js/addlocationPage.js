@@ -1,31 +1,26 @@
 // Code for the Add Location page.
 
 //Link the function to the add location button when it is clicked
-document.getElementById("saveButton").onclick = function (){Save()};
+document.getElementById("saveButton").onclick = function (){clickSaveButton()};
 
+var cache =  new LocationWeatherCache();
+cache.loadLocation();
 
-//Function to save location, nickname, latitude and longitude of location to local storage
-function Save(){
+function clickSaveButton()
+{
     //make variable that connect to the input by user
     var location = document.getElementById("location").value;
     var nickname = document.getElementById("nickname").value;
     
-    //Object that contain the location, nickname, latitude and longitude of location
-    var saveobject = {
-        'location': location,
-        'nickname': nickname,
-        'lat': lat,
-        'lng': lng     
-    };
+    //Adds a permanent record of location
+    cache.addLocation( lat, lng, nickname);
+    cache.saveLocations();
     
-    
-    //Save the input by user the local storage
-    localStorage.setItem('saveobject',JSON.stringify(saveobject));
-    
-    //The main page will appear when add location is clcked
+    //The main page will appear when add location is clicked
     history.back();
     
 }
+    
 
 //Function that initialise map
 function initMap() {
