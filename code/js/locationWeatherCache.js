@@ -89,6 +89,11 @@ function LocationWeatherCache()
     // are active web service requests and so doesn't need to be saved.
     //
     this.toJSON = function() {
+    	var locationWeatherCachePDO= {
+    		locations: locations
+    	}
+    	return locationWeatherCachePDO
+    	}
     };
 
     // Given a public-data-only version of the class (such as from
@@ -96,6 +101,10 @@ function LocationWeatherCache()
     // instance to match that version.
     //
     this.initialiseFromPDO = function(locationWeatherCachePDO) {
+    	var locationsObject= {};
+    	locationsObject.locations= locations;
+    	
+    	return locationsObject;
     };
 
     // Request weather for the location at the given index for the
@@ -202,7 +211,7 @@ function loadLocations()
 //
 function saveLocations()
 {
-   var storedLocations= JSON.stringify(locations);
+   var storedLocations= JSON.stringify(locationWeatherCachePDO);
    localStorage.setItem( 'locations', storedLocations);
 }
 
