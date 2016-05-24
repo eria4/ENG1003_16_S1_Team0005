@@ -59,22 +59,21 @@ function LocationWeatherCache()
     //
     this.addLocation = function(latitude, longitude, nickname)
     {
-    	var locations.length = index;
-    	var location + index = {
+    	locations.push({
     		"nickname" : nickname,
     		"latitude" : latitude,
     		"longitude" : longitude,
     		"forecasts" : ""
-    	};
+    	});
         saveLocations();
-        return index;
+        return locations.length - 1;
     }
 
     // Removes the saved location at the given index.
     // 
     this.removeLocationAtIndex = function(index)
     {
-      var location.length = locationsLength;
+      var locations.length = locationsLength;
       if ( locationsLength > index)
       {
       	locations.splice( index , 1);
@@ -185,19 +184,18 @@ function LocationWeatherCache()
     {
        for ( index = 0 ; index < locations.length ; index++)
        {
-       	if( locations[ index ].latitude == latitude)
+       	if( locations[ index ].latitude == latitude && locations[ index ].longitude == longitude )
        		{
-       			if( locations[ index ].longitude == longitude)
-       			{
+       
        				return index;
        			}
        			else {return -1;}
        		}
        }
-       else { return -1 ;}
+       
             
-    }
-}
+    
+
 
 // Restore the singleton locationWeatherCache from Local Storage.
 //
@@ -213,7 +211,7 @@ function loadLocations()
 function saveLocations()
 {
    var storedLocations= JSON.stringify(locationWeatherCache);
-   localStorage.setItem( 'locations', storedLocations);
+   localStorage.setItem( 'APP_PREFIX', storedLocations);
 }
 
 
