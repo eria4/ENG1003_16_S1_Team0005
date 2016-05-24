@@ -12,6 +12,12 @@
         <meta name="mobile-web-app-capable" content="yes" />
         <link rel="shortcut icon" sizes="196x196" href="images/icon.png" />
         <link rel="apple-touch-icon-precomposed" href="images/icon.png" />
+        <style>
+      
+      #map {
+        height: calc(100vh - 300px);
+      }
+    </style>
     </head>
     
     <body>
@@ -30,7 +36,29 @@
             <div class="content-grid mdl-grid">
               <div class="mdl-cell">
                 <!--   Main page content here:   -->  
-                
+                 <!--   Map   --> 
+                    <div id='map'></div>
+                  
+                  
+                  <!-- Default Slider -->
+<input class="mdl-slider mdl-js-slider" type="range"
+  min="0" max="100" value="0" tabindex="0">
+
+                  
+                  
+                  <!-- Weather -->
+                  <span class="mdl-layout-title"id="headerBarTitle"fontsize='100'>Weather</span>
+                  
+                  <!-- Nickname -->
+                  <span class="mdl-layout-title"id="headerBarTitle">Summary:</span>
+                  <!-- >Maximum Temperature -->
+                  <span class="mdl-layout-title"id="headerBarTitle">Maximum Temperature:</span>
+                  <!-- Minimum Temperature: -->
+                  <span class="mdl-layout-title"id="headerBarTitle">Minimum Temperature:</span>
+                  <!-- Humidity -->
+                  <span class="mdl-layout-title"id="headerBarTitle">Humidity:</span>
+                  <!-- Wind speed -->
+                  <span class="mdl-layout-title"id="headerBarTitle">Wind speed:</span>
               
               </div>
             </div>
@@ -38,6 +66,9 @@
         </div>
 
         <!--   JavaScript files:   -->
+          <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLmXk13cnSawSePqGi88GsbaVBuNCR34g&callback=initMap">
+    </script>
         <script src="js/locationWeatherCache.js"></script>
         <script src="js/viewLocationPage.js"></script>
     </body>
