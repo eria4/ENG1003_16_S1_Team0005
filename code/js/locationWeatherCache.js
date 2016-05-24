@@ -66,6 +66,7 @@ function LocationWeatherCache()
     		"longitude" : longitude,
     		"forecasts" : ""
     	};
+        saveLocations();
         return index;
     }
 
@@ -211,11 +212,8 @@ function loadLocations()
 //
 function saveLocations()
 {
-   var storedLocations= JSON.stringify(locationWeatherCachePDO);
+   var storedLocations= JSON.stringify(locationWeatherCache);
    localStorage.setItem( 'locations', storedLocations);
 }
 
 
-
-
-	
