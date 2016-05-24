@@ -1,10 +1,8 @@
 // Code for the Add Location page.
 
-//Link the function to the add location button when it is clicked
-document.getElementById("saveButton").onclick = function (){clickSaveButton()};
+
 
 var cache =  new LocationWeatherCache();
-cache.loadLocation();
 
 function clickSaveButton()
 {
@@ -14,7 +12,7 @@ function clickSaveButton()
     
     //Adds a permanent record of location
     cache.addLocation( lat, lng, nickname);
-    cache.saveLocations();
+    
     
     //The main page will appear when add location is clicked
     history.back();
