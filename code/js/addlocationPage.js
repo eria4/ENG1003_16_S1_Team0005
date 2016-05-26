@@ -1,23 +1,4 @@
 // Code for the Add Location page.
-
-
-
-var cache =  new LocationWeatherCache();
-
-function clickSaveButton()
-{
-    //make variable that connect to the input by user
-    var location = document.getElementById("location").value;
-    var nickname = document.getElementById("nickname").value;
-    
-    //Adds a permanent record of location
-    cache.addLocation( lat, lng, nickname);
-    
-    
-    //The main page will appear when add location is clicked
-    history.back();
-    
-}
     
 
 //Function that initialise map
