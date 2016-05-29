@@ -1,7 +1,6 @@
 // Code for the View Location page.
 
-// This is sample code to demonstrate navigation.
-// You need not use it for final app.
+
 
 var locationIndex = localStorage.getItem(APP_PREFIX + "-selectedLocation"); 
 if (locationIndex !== null)
@@ -21,7 +20,5 @@ function initMap() {
             center: {lat: -34.397, lng: 150.644}
         });
        
-    
- 
-    
-      }
+cache.weatherResponse();
+
