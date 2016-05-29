@@ -143,6 +143,11 @@ function LocationWeatherCache()
 	var script = document.createElement('script');
 	script.src = url + parameters;
 	document.body.appendChild(script);
+	 // Build URL parameters from data object.
+    var params = "";
+    // For each key in data object...
+    }
+    
 	
     };
     
